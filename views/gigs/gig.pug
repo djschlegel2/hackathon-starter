@@ -1,0 +1,64 @@
+extends ../layout
+
+block content
+  .page-header
+    h3 Enter a new Gig
+
+  form.form-horizontal(action='/gig/update', method='POST')
+    input(type='hidden', name='_csrf', value=_csrf)
+    .form-group
+      label.col-sm-3.control-label(for='jobId') JobId
+      .col-sm-7
+        input.form-control(type='text', name='jobId', id='jobId', value='Unset')
+
+    .form-group
+      label.col-sm-3.control-label(for='description') Description
+      .col-sm-7
+        input.form-control(type='text', name='description', id='description', value='Unset')
+
+    .form-group
+      label.col-sm-3.control-label(for='location') Location
+      .col-sm-7
+        input.form-control(type='text', name='location', id='location', value='Mass General Hospital')
+
+    .form-group
+      label.col-sm-3.control-label Profession
+      .col-sm-6
+        label.radio.col-sm-3
+          input(type='radio', checked=user.profile.profession=='Physician', name='profession', value='Physician', data-toggle='radio')
+          span Physician
+        label.radio.col-sm-3
+          input(type='radio', checked=user.profile.profession=='other', name='profession', value='other', data-toggle='radio')
+          span Other
+
+    .form-group
+      label.col-sm-3.control-label Specialty
+      .col-sm-6
+        label.radio.col-sm-3
+          input(type='radio', checked=user.profile.specialty=='InternalMedicine', name='specialty', value='InternalMedicine', data-toggle='radio')
+          span InternalMedicine
+        label.radio.col-sm-3
+          input(type='radio', checked=user.profile.specialty=='EmergencyMedicine', name='specialty', value='EmergencyMedicine', data-toggle='radio')
+          span EmergencyMedicine
+        label.radio.col-sm-3
+          input(type='radio', checked=user.profile.specialty=='Hospitalist', name='specialty', value='Hospitalist', data-toggle='radio')
+          span Hospitalist
+        label.radio.col-sm-3
+          input(type='radio', checked=user.profile.specialty=='other', name='specialty', value='other', data-toggle='radio')
+          span Other
+
+    .form-group
+      label.col-sm-3.control-label(for='state') State
+      .col-sm-7
+        input.form-control(type='text', name='state', id='state', value='MA')
+
+    .form-group
+      label.col-sm-3.control-label(for='days') Days
+      .col-sm-7
+        input.form-control(type='text', name='days', id='days', value='')
+
+    .form-group
+      .col-sm-offset-3.col-sm-4
+        button.btn.btn.btn-primary(type='submit')
+          i.fa.fa-pencil
+          | Create Gig

@@ -1,0 +1,14 @@
+{
+  "user1": {
+    "email": "dave@avs.org",
+    "profile": {
+      "name": "Dave Jenson",
+      "age": "50",
+      "profession": "Physician",
+      "specialties": "InternalMedicine",
+      "state_licenses": "MA,NH",
+      "days": "MonTue",
+      "rate": "200"
+    }
+  }
+}

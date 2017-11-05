@@ -1,0 +1,96 @@
+:
+::Starting up
+:::Start up mongodb
+shell.mongodb:
+* cd ~/git/hackathon-starter/mongodb/mongodb-osx-x86_64-enterprise-3.4.10/
+* ulimit -n 2048
+* sudo mkdir /data/db; chmod a+rwx /data/db
+* ./bin/mongod
+:::Start up generic app
+shell.hackerthon:
+* npm install
+* node app.js
+:::Login
+* dschlegel@athenahealth.com (pw: BobsYerUncle)
+
+::Existing code
+:::models
+::::User.js
+* userSchema is the structure of a user
+* const User = mongoose.model('User', userSchema)
+** so User.findOne, etc is referencing the mongoose.model
+
+:::controllers
+::::home - entry page
+::::user.js - a login user
+user.js:11:exports.getLogin = (req, res) => {
+user.js:24:exports.postLogin = (req, res, next) => {
+user.js:54:exports.logout = (req, res) => {
+user.js:63:exports.getSignup = (req, res) => {
+user.js:76:exports.postSignup = (req, res, next) => {
+user.js:116:exports.getAccount = (req, res) => {
+user.js:126:exports.postUpdateProfile = (req, res, next) => {
+user.js:162:exports.postUpdatePassword = (req, res, next) => {
+user.js:188:exports.postDeleteAccount = (req, res, next) => {
+user.js:201:exports.getOauthUnlink = (req, res, next) => {
+user.js:219:exports.getReset = (req, res, next) => {
+user.js:242:exports.postReset = (req, res, next) => {
+user.js:304:exports.getForgot = (req, res) => {
+user.js:317:exports.postForgot = (req, res, next) => {
+::::contact - possibly sending messages, needs signup for something
+::::api - connection to other services - come back to this later
+:::views
+* layout - generic stuff
+* home.pug - entry page - CLEANUP for our entry page
+* contact.pug - contact entry page
+::::partials - flash/footer/header supporting files
+::::account
+* login.pug - login page (POST)
+** forgot.pug, reset.pug
+* profile.pug - Profil information (/account/profile)
+* signup-form - initial entry forma
+
+
+::Goals
+:::Base capabilities
+* Create record: Gig
+
+  jobId: '140',
+  description: 'Short term surgery',
+  location: 'Mass General Hospital',
+  profession: 'Physician',
+  specialty: 'undefined',
+  state: MA,
+  days: Tue
+},
+
+
+
+:::Design
+
+:::Backlog
+* (low) database loading
+* (low) Customize entry page
+* (low) Dominic Access
+* (A++) Twilio/etc send messages
+
+::Goals:Sunday
+:::(!!) Searching
+* function match
+** (x) read all users and gigs
+** find matching requirements
+** return list
+
+* /gig/findGigMatches
+** (x) find All users and gigs
+** results of functions
+** present gig then users
+
+* /gig/findMyGigMatches
+** present just gigs for this user
+
+:::gig-lists/Qualifications
+* Current user
+:::Checkboxes to save multi-options - easier for dates, etc
+:::Tabular output
+:::Bulk load with more data (Dom)

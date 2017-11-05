@@ -1,0 +1,11 @@
+{
+  "gig1": {
+    "jobId": "1",
+    "description": "Brain Surgery",
+    "location": "MassGeneral",
+    "profession": "Physician",
+    "specialty": "InternalMedicine",
+    "state": "MA",
+    "days": "MonTue"
+  }
+}
