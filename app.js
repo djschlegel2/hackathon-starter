@@ -32,6 +32,7 @@ dotenv.load({ path: '.env.example' });
  */
 const homeController = require('./controllers/home');
 const userController = require('./controllers/user');
+const gigController = require('./controllers/gig');
 const apiController = require('./controllers/api');
 const contactController = require('./controllers/contact');
 
@@ -97,6 +98,7 @@ app.use(lusca.xframe('SAMEORIGIN'));
 app.use(lusca.xssProtection(true));
 app.use((req, res, next) => {
   res.locals.user = req.user;
+  res.locals.gig = req.gig;
   next();
 });
 app.use((req, res, next) => {
@@ -135,6 +137,13 @@ app.post('/account/profile', passportConfig.isAuthenticated, userController.post
 app.post('/account/password', passportConfig.isAuthenticated, userController.postUpdatePassword);
 app.post('/account/delete', passportConfig.isAuthenticated, userController.postDeleteAccount);
 app.get('/account/unlink/:provider', passportConfig.isAuthenticated, userController.getOauthUnlink);
+app.get('/account/list', passportConfig.isAuthenticated, userController.getListUser);
+app.get('/gig/create', passportConfig.isAuthenticated, gigController.getCreateGig);
+app.post('/gig/update', passportConfig.isAuthenticated, gigController.postUpdateGig);
+app.get('/gig/list', passportConfig.isAuthenticated, gigController.getListGig);
+app.get('/user/bulkload', passportConfig.isAuthenticated, userController.bulkLoad);
+app.get('/gig/bulkload', passportConfig.isAuthenticated, gigController.bulkLoad);
+app.get('/gig/findGigMatches', passportConfig.isAuthenticated, gigController.findGigMatches);
 
 /**
  * API examples routes.

@@ -6,14 +6,17 @@ block content
 
   form.form-horizontal(action='/account/profile', method='POST')
     input(type='hidden', name='_csrf', value=_csrf)
+
     .form-group
       label.col-sm-3.control-label(for='email') Email
       .col-sm-7
         input.form-control(type='email', name='email', id='email', value=user.email)
+
     .form-group
       label.col-sm-3.control-label(for='name') Name
       .col-sm-7
         input.form-control(type='text', name='name', id='name', value=user.profile.name)
+
     .form-group
       label.col-sm-3.control-label Gender
       .col-sm-6
@@ -26,14 +29,49 @@ block content
         label.radio.col-sm-3
           input(type='radio', checked=user.profile.gender=='other', name='gender', value='other', data-toggle='radio')
           span Other
+
     .form-group
-      label.col-sm-3.control-label(for='location') Location
-      .col-sm-7
-        input.form-control(type='text', name='location', id='location', value=user.profile.location)
+      label.col-sm-3.control-label Profession
+      .col-sm-6
+        label.radio.col-sm-3
+          input(type='radio', checked=user.profile.profession=='Physician', name='profession', value='Physician', data-toggle='radio')
+          span Physician
+        label.radio.col-sm-3
+          input(type='radio', checked=user.profile.profession=='other', name='profession', value='other', data-toggle='radio')
+          span Other
+
     .form-group
-      label.col-sm-3.control-label(for='website') Website
+      label.col-sm-3.control-label Specialties
+      .col-sm-6
+        label.radio.col-sm-4
+          input(type='radio', checked=user.profile.specialties=='InternalMedicine', name='specialties', value='InternalMedicine', data-toggle='radio')
+          span InternalMedicine
+        label.radio.col-sm-4
+          input(type='radio', checked=user.profile.specialties=='EmergencyMedicine', name='specialties', value='EmergencyMedicine', data-toggle='radio')
+          span EmergencyMedicine
+        label.radio.col-sm-4
+          input(type='radio', checked=user.profile.specialties=='Hospitalist', name='specialties', value='Hospitalist', data-toggle='radio')
+          span Hospitalist
+        label.radio.col-sm-4
+          input(type='radio', checked=user.profile.specialties=='other', name='specialties', value='other', data-toggle='radio')
+          span Other
+
+    .form-group
+      label.col-sm-3.control-label(for='state_licenses') State_Licenses
       .col-sm-7
-        input.form-control(type='text', name='website', id='website', value=user.profile.website)
+        input.form-control(type='text', name='state_licenses', id='state_licenses', value=user.profile.state_licenses)
+    .form-group
+      label.col-sm-3.control-label(for='days') Days
+      .col-sm-7
+        input.form-control(type='text', name='days', id='days', value=user.profile.days)
+    .form-group
+      label.col-sm-3.control-label(for='rate') Rate
+      .col-sm-7
+        input.form-control(type='text', name='rate', id='rate', value=user.profile.rate)
+    .form-group
+      label.col-sm-3.control-label(for='age') Age
+      .col-sm-7
+        input.form-control(type='text', name='age', id='age', value=user.profile.age)
     .form-group
       label.col-sm-3.control-label Gravatar
       .col-sm-4

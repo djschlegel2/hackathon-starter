@@ -3,6 +3,11 @@ const crypto = bluebird.promisifyAll(require('crypto'));
 const nodemailer = require('nodemailer');
 const passport = require('passport');
 const User = require('../models/User');
+const log4js = require('log4js');
+
+const logger = log4js.getLogger('user');
+
+const userDataJson = require('./user-data.json');
 
 /**
  * GET /login
@@ -139,8 +144,13 @@ exports.postUpdateProfile = (req, res, next) => {
     user.email = req.body.email || '';
     user.profile.name = req.body.name || '';
     user.profile.gender = req.body.gender || '';
-    user.profile.location = req.body.location || '';
-    user.profile.website = req.body.website || '';
+    user.profile.age = req.body.age || '';
+    user.profile.profession = req.body.profession || '';
+    user.profile.specialties = req.body.specialties || '';
+    user.profile.state_licenses = req.body.state_licenses || '';
+    user.profile.days = req.body.days || '';
+    user.profile.rate = req.body.rate || '';
+
     user.save((err) => {
       if (err) {
         if (err.code === 11000) {
@@ -373,4 +383,41 @@ exports.postForgot = (req, res, next) => {
     .then(sendForgotPasswordEmail)
     .then(() => res.redirect('/forgot'))
     .catch(next);
+};
+
+function printUser(user) {
+  const names = ['name', 'gender', 'age', 'profession', 'specialties', 'state_licenses', 'days', 'rate'];
+  const fields = names.map(f => `${f}: ${user.profile[f]}`);
+  return fields.join();
+}
+
+/**
+ * GET /user/list
+ */
+exports.getListUser = (req, res) =>
+  User.find({}, (err, existingUsers) => {
+    if (err) { return err; }
+    const displayUsers = existingUsers.map(u => printUser(u));
+    logger.debug(`Users: ${JSON.stringify(displayUsers)}`);
+    res.render('account/user_list', {
+      title: 'Service Providers',
+      users: displayUsers,
+    });
+  });
+
+/**
+ *
+ */
+exports.bulkLoad = (req, res) => {
+  const displayUsers = Object.keys(userDataJson).map((u) => {
+    const user = new User(userDataJson[u]);
+    user.save((err) => {
+      if (err) { return err; }
+    });
+    return printUser(user);
+  });
+  res.render('account/user_list', {
+    title: 'Service Providers',
+    users: displayUsers,
+  });
 };

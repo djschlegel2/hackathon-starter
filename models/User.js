@@ -8,21 +8,15 @@ const userSchema = new mongoose.Schema({
   passwordResetToken: String,
   passwordResetExpires: Date,
 
-  facebook: String,
-  twitter: String,
-  google: String,
-  github: String,
-  instagram: String,
-  linkedin: String,
-  steam: String,
-  tokens: Array,
-
   profile: {
     name: String,
     gender: String,
-    location: String,
-    website: String,
-    picture: String
+    age: String,
+    profession: String,       // * Physician
+    specialties: String,      // * InternalMedicine, EmergencyMedicine, Hospitalist
+    state_licenses: String,   // * comma-separated States - like MA,NH,etc
+    days: String,             // * Mon/Tue/Wed/Thu/Fri/Sat/Sun
+    rate: String,             // 
   }
 }, { timestamps: true });
 
