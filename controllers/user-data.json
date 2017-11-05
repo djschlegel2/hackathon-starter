@@ -1,14 +1,122 @@
 {
   "user1": {
-    "email": "dave@avs.org",
+    "email": "albert@harvard.mgh.edu",
     "profile": {
-      "name": "Dave Jenson",
-      "age": "50",
+      "name": "Albert James",
+      "age": "45",
       "profession": "Physician",
       "specialties": "InternalMedicine",
-      "state_licenses": "MA,NH",
-      "days": "MonTue",
+      "state_licenses": "MA,NH,CT",
+      "days": "Mon,Wed,Fri",
       "rate": "200"
+    }
+  },
+  "user2": {
+    "email": "bob@harvard.bwh.edu",
+    "profile": {
+      "name": "Bob Charles",
+      "age": "45",
+      "profession": "Physician",
+      "specialties": "EmergencyMedicine",
+      "state_licenses": "MA",
+      "days": "Mon",
+      "rate": "250"
+    }
+  },
+  "user3": {
+    "email": "Charlie@harvard.bid.edu",
+    "profile": {
+      "name": "Charlie Smith",
+      "age": "30",
+      "profession": "Physician",
+      "specialties": "Hospitalist",
+      "state_licenses": "MA,CT",
+      "days": "Mon,Tue,Fri",
+      "rate": "150"
+    }
+  },
+  "user4": {
+    "email": "doug@tufts.edu",
+    "profile": {
+      "name": "Doug Jones",
+      "age": "45",
+      "profession": "Physician",
+      "specialties": "InternalMedicine",
+      "state_licenses": "MA,NH,NY",
+      "days": "Tue,Thur",
+      "rate": "190"
+    }
+  },
+  "user5": {
+    "email": "edward@bmc.bu.edu",
+    "profile": {
+      "name": "Edward Chang",
+      "age": "55",
+      "profession": "Physician",
+      "specialties": "InternalMedicine",
+      "state_licenses": "MA",
+      "days": "Mon,Tue,Wed",
+      "rate": "250"
+    }
+  },
+  "user6": {
+    "email": "Arianna@harvard.mgh.edu",
+    "profile": {
+      "name": "Arianna Holmes",
+      "age": "37",
+      "profession": "Physician",
+      "specialties": "EmergencyMedicine",
+      "state_licenses": "MA,NY",
+      "days": "Mon,Tue,Thu,Fri",
+      "rate": "200"
+    }
+  },
+  "user7": {
+    "email": "barbara@bid.harvard.edu",
+    "profile": {
+      "name": "Barbara Vitale",
+      "age": "40",
+      "profession": "Physician",
+      "specialties": "InternalMedicine",
+      "state_licenses": "MA,NH,CT",
+      "days": "Mon,Tue",
+      "rate": "200"
+    }
+  },
+  "user8": {
+    "email": "Corinne@mgh.harvard.edu",
+    "profile": {
+      "name": "Corinne Chang",
+      "age": "40",
+      "profession": "Physician",
+      "specialties": "InternalMedicine",
+      "state_licenses": "MA,CT",
+      "days": "Mon,Fri",
+      "rate": "200"
+    }
+  },
+  "user9": {
+    "email": "Donna@tufts.edu",
+    "profile": {
+      "name": "Donna Saunders",
+      "age": "55",
+      "profession": "Physician",
+      "specialties": "InternalMedicine",
+      "state_licenses": "MA",
+      "days": "Mon,Wed",
+      "rate": "220"
+    }
+  },
+  "user10": {
+    "email": "Edna@bwh.harvard.edu",
+    "profile": {
+      "name": "Edna Fujiwara",
+      "age": "45",
+      "profession": "Physician",
+      "specialties": "Hospitalist",
+      "state_licenses": "MA,ME",
+      "days": "Mon,Tue,Thu",
+      "rate": "190"
     }
   }
 }

@@ -98,6 +98,28 @@ function printUser(user) {
   return fields.join();
 }
 
+function matchUserGig(user, gig) {
+  // profession
+  // gig:speciality in user:specialties (single now)
+  // gig:state in user:state_licenses (comma-sep)
+  // gig:days in user:days
+  const userSpecialties = user.specialties ? user.specialties.split(',') : [];
+  const gigDays = gig.days ? gig.days.split(',') : [];
+  const userDays = user.days ? user.days.split(',') : [];
+  const userStates = user.state_licenses ? user.state_licenses.split(',') : [];
+  if (gig.profession !== user.profession) {
+    return false;
+  } else if (userSpecialties.indexOf(gig.specialty) < 0) {
+    return false;
+  } else if (userStates.indexOf(gig.state) < 0) {
+    return false;
+  // TODO: multi-to-multi-search
+  } else if (gigDays.indexOf(userDays[0]) < 0) {
+    return false;
+  }
+  return true;
+}
+
 exports.findGigMatches = (req, res) => {
   return Gig.find('*', (err, existingGigs) => {
     if (err) { return err; }
@@ -109,6 +131,13 @@ exports.findGigMatches = (req, res) => {
       if (err) { return err; }
       const displayUsers = existingUsers.map(u => printUser(u));
       logger.debug(`Users: ${JSON.stringify(displayUsers)}`);
+      for (const g of existingGigs) {
+        logger.debug(`Git: ${printGig(g)}`);
+        for (const u of existingUsers) {
+          logger.debug(`   User: ${printUser(u)}`);
+          logger.debug(`     Matches: ${matchUserGig(u,g)}`);
+        }
+      }
       res.render('gigs/gig_list', {
         title: 'Gigs',
         gigs: displayGigs,

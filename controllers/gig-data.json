@@ -1,11 +1,101 @@
 {
   "gig1": {
     "jobId": "1",
-    "description": "Brain Surgery",
-    "location": "MassGeneral",
+    "description": "GeneralMedicine",
+    "location": "MGH",
     "profession": "Physician",
     "specialty": "InternalMedicine",
     "state": "MA",
-    "days": "MonTue"
+    "days": "Mon,Tue,Wed,Thu,Fri"
+  },
+  "gig2": {
+    "jobId": "2",
+    "description": "EmergencyRoom",
+    "location": "MGH",
+    "profession": "Physician",
+    "specialty": "EmergencyMedicine",
+    "state": "MA",
+    "days": "Mon,Tue,Thu"
+  },
+  "gig3": {
+    "jobId": "3",
+    "description": "EmergencyRoom",
+    "location": "BWH",
+    "profession": "Physician",
+    "specialty": "EmergencyMedicine",
+    "state": "MA",
+    "days": "Mon,Tue,Fri"
+  },
+  "gig4": {
+    "jobId": "4",
+    "description": "MedicineClinic",
+    "location": "TuftsMC",
+    "profession": "Physician",
+    "specialty": "InternalMedicine",
+    "state": "MA",
+    "days": "Mon"
+  },
+  "gig5": {
+    "jobId": "5",
+    "description": "GeneralMedicine",
+    "location": "BID",
+    "profession": "Physician",
+    "specialty": "Hospitalist",
+    "state": "MA",
+    "days": "Tue,Wed,Thu"
+  },
+  "gig6": {
+    "jobId": "6",
+    "description": "Adolescent Clinic",
+    "location": "TuftsMC",
+    "profession": "Physician",
+    "specialty": "InternalMedicine",
+    "state": "MA",
+    "days": "Tue,Thu,Fri"
+  },
+  "gig7": {
+    "jobId": "7",
+    "description": "General Medicine",
+    "location": "BMC",
+    "profession": "Physician",
+    "specialty": "Hospitalist",
+    "state": "MA",
+    "days": "Mon,Tue,Wed,Thu,Fri,Sat"
+  },
+  "gig8": {
+    "jobId": "8",
+    "description": "Emergency Medicine",
+    "location": "MGH",
+    "profession": "Physician",
+    "specialty": "EmergencyMedicine",
+    "state": "MA",
+    "days": "Sat,Sun"
+  },
+  "gig9": {
+    "jobId": "9",
+    "description": "Emergency Room",
+    "location": "BID",
+    "profession": "Physician",
+    "specialty": "EmergencyMedicine",
+    "state": "MA",
+    "days": "Tue,Thu,Sat"
+  },
+  "gig10": {
+    "jobId": "10",
+    "description": "Psychiatry",
+    "location": "MGH",
+    "profession": "Physician",
+    "specialty": "InternalMedicine",
+    "state": "MA",
+    "days": "Tue,Fri"
+  },
+  "gig11": {
+    "jobId": "11",
+    "description": "General Medicine Clinic",
+    "location": "BWH",
+    "profession": "Physician",
+    "specialty": "InternalMedicine",
+    "state": "MA",
+    "days": "Mon,Wed,Fri"
   }
 }

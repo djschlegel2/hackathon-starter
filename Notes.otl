@@ -75,6 +75,7 @@ user.js:317:exports.postForgot = (req, res, next) => {
 * (A++) Twilio/etc send messages
 
 ::Goals:Sunday
+:::Fork Repo
 :::(!!) Searching
 * function match
 ** (x) read all users and gigs
@@ -94,3 +95,8 @@ user.js:317:exports.postForgot = (req, res, next) => {
 :::Checkboxes to save multi-options - easier for dates, etc
 :::Tabular output
 :::Bulk load with more data (Dom)
+
+
+:::User david
+email: "dschlegel@athenahealth.com"
+password: "$2a$10$Ml05q4zWbsTXrJoZVZVn.OJ6sw5kVHGr5YaJSUh08/XdcamHkR2yq"
