@@ -75,8 +75,9 @@ user.js:317:exports.postForgot = (req, res, next) => {
 * (A++) Twilio/etc send messages
 
 ::Goals:Sunday
-:::Fork Repo
-:::(!!) Searching
+:::(x) Fork Repo
+:::Bulk load with more data (Dom)
+:::(x) Searching
 * function match
 ** (x) read all users and gigs
 ** find matching requirements
@@ -87,16 +88,13 @@ user.js:317:exports.postForgot = (req, res, next) => {
 ** results of functions
 ** present gig then users
 
+:::(TODO) gig-lists/Qualifications
 * /gig/findMyGigMatches
 ** present just gigs for this user
 
-:::gig-lists/Qualifications
-* Current user
+::Goals
 :::Checkboxes to save multi-options - easier for dates, etc
 :::Tabular output
-:::Bulk load with more data (Dom)
-
-
 :::User david
 email: "dschlegel@athenahealth.com"
 password: "$2a$10$Ml05q4zWbsTXrJoZVZVn.OJ6sw5kVHGr5YaJSUh08/XdcamHkR2yq"

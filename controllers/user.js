@@ -386,8 +386,8 @@ exports.postForgot = (req, res, next) => {
 };
 
 function printUser(user) {
-  const names = ['name', 'gender', 'age', 'profession', 'specialties', 'state_licenses', 'days', 'rate'];
-  const fields = names.map(f => `${f}: ${user.profile[f]}`);
+  const names = ['name', 'age', 'profession', 'specialties', 'state_licenses', 'days', 'rate'];
+  const fields = names.map(f => ` ${f}: ${user.profile[f]}`);
   return fields.join();
 }
 

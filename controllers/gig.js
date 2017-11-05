@@ -52,7 +52,7 @@ exports.getCreateGig = (req, res) => {
 
 function printGig(gig) {
   const names = ['jobId', 'description', 'location', 'profession', 'specialty', 'state', 'days'];
-  const fields = names.map(f => `${f}: ${gig[f]}`);
+  const fields = names.map(f => ` ${f}: ${gig[f]}`);
   return fields.join();
 }
 
@@ -93,8 +93,8 @@ exports.bulkLoad = (req, res) => {
 };
 
 function printUser(user) {
-  const names = ['name', 'gender', 'age', 'profession', 'specialties', 'state_licenses', 'days', 'rate'];
-  const fields = names.map(f => `${f}: ${user.profile[f]}`);
+  const names = ['name', 'age', 'profession', 'specialties', 'state_licenses', 'days', 'rate'];
+  const fields = names.map(f => ` ${f}: ${user.profile[f]}`);
   return fields.join();
 }
 
@@ -103,21 +103,27 @@ function matchUserGig(user, gig) {
   // gig:speciality in user:specialties (single now)
   // gig:state in user:state_licenses (comma-sep)
   // gig:days in user:days
-  const userSpecialties = user.specialties ? user.specialties.split(',') : [];
+  const userSpecialties = user.profile.specialties ? user.profile.specialties.split(',') : [];
   const gigDays = gig.days ? gig.days.split(',') : [];
-  const userDays = user.days ? user.days.split(',') : [];
-  const userStates = user.state_licenses ? user.state_licenses.split(',') : [];
-  if (gig.profession !== user.profession) {
+  const userDays = user.profile.days ? user.profile.days.split(',') : [];
+  const userStates = user.profile.state_licenses ? user.profile.state_licenses.split(',') : [];
+  if (gig.profession !== user.profile.profession) {
     return false;
   } else if (userSpecialties.indexOf(gig.specialty) < 0) {
     return false;
   } else if (userStates.indexOf(gig.state) < 0) {
     return false;
   // TODO: multi-to-multi-search
-  } else if (gigDays.indexOf(userDays[0]) < 0) {
-    return false;
   }
-  return true;
+  let allMatches = true;
+  gigDays.map((d) => {
+    const good = userDays.indexOf(d) > -1;
+    if (!good) {
+      allMatches = false;
+    }
+    return good;
+  });
+  return allMatches;
 }
 
 exports.findGigMatches = (req, res) => {
@@ -129,19 +135,28 @@ exports.findGigMatches = (req, res) => {
 
     return User.find({}, (err, existingUsers) => {
       if (err) { return err; }
-      const displayUsers = existingUsers.map(u => printUser(u));
-      logger.debug(`Users: ${JSON.stringify(displayUsers)}`);
-      for (const g of existingGigs) {
-        logger.debug(`Git: ${printGig(g)}`);
-        for (const u of existingUsers) {
-          logger.debug(`   User: ${printUser(u)}`);
-          logger.debug(`     Matches: ${matchUserGig(u,g)}`);
-        }
-      }
-      res.render('gigs/gig_list', {
+      existingUsers.map(u => printUser(u));
+      // logger.debug(`Users: ${JSON.stringify(displayUsers)}`);
+      let resultMatches = [];
+      existingGigs.map((g) => {
+        const displayGig = [printGig(g)];
+        // logger.debug(`Git: ${displayGig}`);
+        existingUsers.map((u) => {
+          const displayUser = printUser(u);
+          const good = matchUserGig(u, g);
+          // logger.debug(`   User: ${displayUser}`);
+          // logger.debug(`     Matches: ${good}`);
+          if (good) {
+            displayGig.push(`____${displayUser}`);
+          }
+          return good;
+        });
+        resultMatches = resultMatches.concat(displayGig, ['']);
+        return displayGig;
+      });
+      res.render('gigs/gig_matches', {
         title: 'Gigs',
-        gigs: displayGigs,
-        qualifiedUsers: displayUsers,
+        matches: resultMatches,
       });
     });
   });
