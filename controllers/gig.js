@@ -56,27 +56,6 @@ function printGig(gig) {
   return fields.join();
 }
 
-/**
- * GET /gig/create
- * Set up views/gigs/gig that then calls postUpdateGig
- */
-exports.getListGig = (req, res) => {
-  return Gig.find('*', (err, existingGigs) => {
-    // if (err) { return next(err); }
-    const displayGigs = existingGigs.map(g => printGig(g));
-    logger.debug(`gigs: ${JSON.stringify(displayGigs)}`);
-    const displayQuals = [];
-    if (req.user) {
-      displayQuals.push(`Profession: ${req.user.profession}`);
-    }
-    res.render('gigs/gig_list', {
-      title: 'Gig',
-      gigs: displayGigs,
-      qualifiedUsers: displayQuals,
-    });
-  });
-};
-
 exports.bulkLoad = (req, res) => {
   const displayGigs = Object.keys(gigDataJson).map((u) => {
     const gig = new Gig(gigDataJson[u]);
@@ -157,6 +136,42 @@ exports.findGigMatches = (req, res) => {
       res.render('gigs/gig_matches', {
         title: 'Gigs',
         matches: resultMatches,
+      });
+    });
+  });
+};
+
+/**
+ * GET /gig/create
+ * Set up views/gigs/gig that then calls postUpdateGig
+ */
+exports.getListGig = (req, res) => {
+  return Gig.find('*', (err, existingGigs) => {
+    if (err) { return err; }
+
+    // TODO: Access current user instead of hardcoding !
+    const demoUserEmail = 'dominic.tong@columbia.edu';
+    User.findOne({ email: demoUserEmail }, (err, demoUser) => {
+      const displayQuals = [];
+      if (demoUser) {
+        displayQuals.push(`Profession: ${demoUser.profile.profession}`);
+        displayQuals.push(`Specialties: ${demoUser.profile.specialties}`);
+        displayQuals.push(`State Licenses: ${demoUser.profile.state_licenses}`);
+        displayQuals.push(`Days: ${demoUser.profile.days}`);
+      }
+      let resultMatches = [];
+      existingGigs.map((g) => {
+        const displayGig = [printGig(g)];
+        const good = matchUserGig(demoUser, g);
+        if (good) {
+          resultMatches.push(`${displayGig}`);
+        }
+        return good;
+      });
+      res.render('gigs/gig_list', {
+        title: 'Gig',
+        qualifications: displayQuals,
+        gigs: resultMatches,
       });
     });
   });

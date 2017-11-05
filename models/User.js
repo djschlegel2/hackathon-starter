@@ -12,7 +12,7 @@ const userSchema = new mongoose.Schema({
     name: String,
     gender: String,
     age: String,
-    profession: String,       // * Physician
+    profession: String,       // * Physician, Administrator
     specialties: String,      // * InternalMedicine, EmergencyMedicine, Hospitalist
     state_licenses: String,   // * comma-separated States - like MA,NH,etc
     days: String,             // * Mon/Tue/Wed/Thu/Fri/Sat/Sun

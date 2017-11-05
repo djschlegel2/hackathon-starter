@@ -76,7 +76,7 @@ user.js:317:exports.postForgot = (req, res, next) => {
 
 ::Goals:Sunday
 :::(x) Fork Repo
-:::Bulk load with more data (Dom)
+:::(x) Bulk load with more data (Dom)
 :::(x) Searching
 * function match
 ** (x) read all users and gigs
@@ -88,9 +88,16 @@ user.js:317:exports.postForgot = (req, res, next) => {
 ** results of functions
 ** present gig then users
 
-:::(TODO) gig-lists/Qualifications
+:::(x) gig-lists/Qualifications
 * /gig/findMyGigMatches
 ** present just gigs for this user
+
+:::DEMO
+dominic.tong@columbia.edu
+password
+
+dschlegel@athenahealth.com
+BobsYerUncle
 
 ::Goals
 :::Checkboxes to save multi-options - easier for dates, etc
